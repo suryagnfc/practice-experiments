@@ -1,3 +1,15 @@
 X won the Game.
  open screenshow to get the screen shot of gameX won the Game.
  open screenshow to get the screen shot of game
+X won the Game.
+ open screenshow to get the screen shot of game
+O won the Game.
+ open screenshow to get the screen shot of game
+
+========Game 1 ========
+X won the Game.
+ open screenshow to get the screen shot of game
+
+========Game 2 ========
+O won the Game.
+ open screenshow to get the screen shot of game
