@@ -47,3 +47,20 @@ def listInsideList (list):
     return 0       
 listInsideList (listInList)
 
+
+def listInsideList_index (list):
+    #print('1 ->')
+    #print(list)
+    for index in (list):
+       # print('-' + str(type(index)) + '- ' + str(str(type(index)) == "<class 'list'>"))
+        
+        if (str(str(type(index)) == "<class 'list'>") == "True"):
+           # print('inside if condition')
+            listInsideList (list.index(index))
+        else:
+            print (index)
+    return 0       
+listInsideList_index (listInList)
+
+
+
