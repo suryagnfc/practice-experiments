@@ -33,7 +33,7 @@ def gameStatus():
 
     return 1
 
-
+#function to display the board from dictionary.
 def printBoard(board):
     print(board['top-L'] + '|' + board['top-M'] + '|' + board['top-R'])
     print('-+-+-')
@@ -41,11 +41,15 @@ def printBoard(board):
     print('-+-+-')
     print(board['low-L'] + '|' + board['low-M'] + '|' + board['low-R'])
 
-
+#does a toss and returns whose chance is to start.
 def toss():
     global players
     return(random.randint(0,1))
 
+#gameHandle() handles the main game flow. - displays tictactoe after every chance.
+#call the function to check winner after every chance
+#prints the chance and other messages
+#call the function to save the winner detail along with screenshot to file.
 
 def gameHandle():
     global turn
@@ -82,23 +86,32 @@ def gameHandle():
     
         printBoard(theBoard)
         chance= chance+1
+        saveWinner()
         chanceScreenshots(turn,'',chance,theBoard)
 
 def getGameNumber():
     global gameNumber
+#checking if the directory is present or not. If not then create a directory from the current working directory
     if (os.path.exists(os.path.join(os.getcwd(),'TestFiles')) != True):
         os.makedirs(os.path.join(os.getcwd(),'TestFiles'))
-
+#getting the path as Text by using Join
     path = os.path.join(os.getcwd(),'TestFiles')
+#adding the name of file to path that will be refered to same gave summary details.    
     fileName = path + '\\'+ 'TicTacToe.txt'
+#opening the file in read mode
     fileObj = open(fileName, 'r')
+#Reading all the content at one go.
     existingFileContent = fileObj.read()
+#creating a regular expression to get the game number detail from the file.
     gameRegEx= re.compile(r'Game \d')
+#finding all the combination found from the file for the regular expression.
     mo = gameRegEx.findall(existingFileContent)
-    
+#if there is atleast one game number then go to else part else set the game as 1    
     if len(mo) >=1:
         lastGame = mo[len(mo)-1]
+#get the last text combination found from the file by using regular expression.
         lastGameNumber = lastGame.split(' ')
+#convert the text1 to int 1 and then increase by 1(for this game)
         gameNumber = (int(lastGameNumber[1])) +1
     else:
         gameNumber=1
@@ -130,6 +143,7 @@ def chanceScreenshots(turn, text, chance,theboard):
     fileObj.write('-+-+-\n')
     fileObj.write(theboard['low-L'] + '|' + theboard['low-M'] + '|' + theboard['low-R']+'\n')
     fileObj.close()
+    
 
 def saveWinner(winnerDetail):
     global gameNumber
@@ -159,4 +173,4 @@ def welcome():
 getGameNumber()
 welcome()
 gameHandle()
-#saveWinner()
+
