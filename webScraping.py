@@ -70,6 +70,26 @@ except Exception as Exc:
 sitehtml =open('example.html').read()
 print(sitehtml)
 exampleSoup = bs4.BeautifulSoup(sitehtml)
+
+elements = exampleSoup.select('#author')
+print(len(elements))
+print(elements[0])
+print(elements[0].getText())
+print(elements[0].attrs)
+
 elements = exampleSoup.select('p')
 print(len(elements))
-print(elements)
+print(elements[0])
+print(elements[1])
+print(elements[2])
+
+
+#getting data from and element's attributes
+
+spanElem = exampleSoup.select('span')[0] # when [0] is put at this position then the
+#spanElem will be of type - <class 'bs4.element.Tag'>, and we can use the .get() function.
+#but if we dont put [0] then the spanElem will be of type <class 'list'> and we
+#wont be able to use .get() function
+print(type(spanElem))
+print(spanElem)
+print(spanElem.get('id'))
